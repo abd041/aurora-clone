@@ -1,0 +1,38 @@
+@import '../styles/aurora.css';
+@import '../styles/navbar-scope.css';
+@import '../styles/realisations-scope.css';
+@import '../styles/home-hero-scope.css';
+@import '../styles/home-video-scope.css';
+
+/* Safari / iOS compositing stability (does not alter signed-off GSAP timelines) */
+@supports (-webkit-touch-callout: none) {
+  .video-mask-item,
+  .home-video .video-mask video,
+  .circle-btn,
+  .header,
+  .menu.page,
+  .header-right .menu {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .circle-btn {
+    -webkit-backdrop-filter: blur(var(--blur));
+  }
+
+  .fixed,
+  .intro,
+  .home-video--container,
+  .home-video .video-mask {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .intro * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

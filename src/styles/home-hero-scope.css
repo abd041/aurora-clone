@@ -1,0 +1,170 @@
+/**
+ * Scoped home index hero — overrides merged global .home-hero / .video-mask collisions
+ * (RealisationHead, ExpertiseHero, etc. share class names in aurora.css).
+ */
+
+.index > .home-hero {
+  height: 100vh;
+  height: 100dvh;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.index > .home-hero.hide {
+  display: none;
+}
+
+.index > .home-hero .video-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.index > .home-hero .video-container::before {
+  background: #00000040;
+  content: '';
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.index > .home-hero .video-container video {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.index > .home-hero .logo-path {
+  fill: none;
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+
+.index > .home-hero .video-mask {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+}
+
+.index > .home-hero .video-mask-item {
+  aspect-ratio: 1 / 1;
+  clip-path: url(#indexLogo);
+  height: auto;
+  width: 31.25vw;
+}
+
+@media only screen and (max-width: 440px) {
+  .index > .home-hero .video-mask-item {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    width: 80vw;
+  }
+}
+
+.index > .home-hero .video-duplicate {
+  height: 100vh;
+  inset: 0;
+  position: fixed;
+  width: 100vw;
+}
+
+.index > .home-hero .scroll-down {
+  bottom: 1.25rem;
+  color: var(--white);
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%);
+  z-index: 3;
+}
+
+.index > .home-hero .scroll-down span {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.index > .home-hero .scroll-down--icon {
+  display: flex;
+  height: 0.875rem;
+  justify-content: center;
+  margin-bottom: 0.625rem;
+  overflow: hidden;
+}
+
+.index > .home-hero .scroll-down--icon span {
+  animation: scrollDown-hero 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  border: 0.0625rem solid var(--white);
+  border-radius: 50%;
+  display: block;
+  height: 0.75rem;
+  width: 0.75rem;
+  will-change: transform;
+}
+
+@keyframes scrollDown-hero {
+  0% {
+    transform: translateY(0) scaleX(1);
+  }
+  40% {
+    transform: translateY(125%) scaleX(0.5);
+  }
+  40.01% {
+    transform: translateY(-125%) scaleX(0.5);
+  }
+  75% {
+    transform: translateY(0) scaleX(1);
+  }
+  to {
+    transform: translateY(0) scaleX(1);
+  }
+}
+
+/* Realisation detail — preserve sticky hero layout */
+.realisation > .home-hero {
+  height: 200vh;
+  position: relative;
+  width: 100%;
+}
+
+.realisation > .home-hero .home-hero--sticky {
+  height: 100vh;
+  left: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.realisation > .home-hero .video-container {
+  height: 100vh;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.realisation > .home-hero .video-mask {
+  height: 100%;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+.realisation > .home-hero .video-mask-item {
+  clip-path: url(#realisationHeadLogo);
+  width: 25vw;
+}
+
+@media only screen and (max-width: 440px) {
+  .realisation > .home-hero .video-mask-item {
+    width: 80vw;
+  }
+}

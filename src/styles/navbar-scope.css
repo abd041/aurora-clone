@@ -1,0 +1,42 @@
+/**
+ * Navbar scope — fixes unscoped Header/Menu CSS collision after merge.
+ * Original Vue scoped `.menu` (overlay) vs `.header-right .menu` (button) separately.
+ */
+
+.header-right button.menu {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: 3.125rem;
+  height: 3.125rem;
+  z-index: auto;
+}
+
+.menu-fade-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1099;
+  pointer-events: none;
+}
+
+.menu-fade-wrapper > .menu.page {
+  pointer-events: auto;
+}
+
+.menu.page {
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.menu.page .menu-container {
+  height: 100%;
+  width: 100%;
+}
+
+.menu.page li a {
+  display: block;
+}
