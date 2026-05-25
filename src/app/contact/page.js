@@ -3,10 +3,12 @@ import ImagesTrail from '@/components/contact/ImagesTrail';
 import DoubleMarquee from '@/components/home/DoubleMarquee';
 import ContactMap from '@/components/agence/ContactMap';
 import { contact } from '@/data/content';
+import { pageTitle } from '@/lib/siteMeta';
+import { site } from '@/data/site';
 
 export const metadata = {
-  title: 'Contact - Aurora',
-  description: 'Get in touch with Aurora, your partner in innovative digital marketing solutions.',
+  title: pageTitle('Contact'),
+  description: site.seo.defaultDescription,
 };
 
 export default function ContactPage() {

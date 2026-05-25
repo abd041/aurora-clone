@@ -14,11 +14,14 @@ export default function LenisProvider({ children }) {
     window.scrollTo(0, 0);
     window.history.scrollRestoration = 'manual';
 
+    const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-      syncTouch: true,
-      touchMultiplier: 1.2,
+      lerp: reduceMotion ? 1 : coarse ? 0.14 : 0.1,
+      smoothWheel: !reduceMotion && !coarse,
+      syncTouch: coarse && !reduceMotion,
+      touchMultiplier: coarse ? 1 : 1.15,
     });
 
     lenis.on('scroll', gsap.updateScrollTrigger);

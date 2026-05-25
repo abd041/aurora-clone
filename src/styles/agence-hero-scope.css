@@ -1,0 +1,44 @@
+/**
+ * Agence hero — no dark voile; title matches index home-video hero (HomeTitle).
+ */
+
+.agence .agence-hero--bg .bg-voile {
+  display: none;
+}
+
+.agence .agence-hero--bg video {
+  transform: none;
+}
+
+.agence .agence-hero .home-title {
+  bottom: 6.25rem;
+  left: 50%;
+  max-width: 57rem;
+  position: absolute;
+  transform: translate(-50%);
+  width: 100%;
+  z-index: 2;
+  align-items: unset;
+  display: block;
+  height: auto;
+  margin-left: 0;
+  padding-bottom: 0;
+  right: auto;
+  top: auto;
+}
+
+.agence .agence-hero .home-title::before {
+  content: none;
+  display: none;
+}
+
+@media only screen and (max-width: 440px) {
+  .agence .agence-hero .home-title {
+    bottom: 10%;
+    left: 0;
+    margin: 0 1.25rem;
+    max-width: 100%;
+    transform: none;
+    width: calc(100% - 40px);
+  }
+}

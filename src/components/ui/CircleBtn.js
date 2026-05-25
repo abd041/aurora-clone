@@ -13,8 +13,11 @@ export default function CircleBtn({ blur = 2, className = '', style, onClick, ..
     const el = rootRef.current;
     if (!el) return undefined;
 
-    xTo.current = gsap.quickTo(el, 'x', { duration: 1, ease: 'elastic.out(0.6, 0.4)' });
-    yTo.current = gsap.quickTo(el, 'y', { duration: 1, ease: 'elastic.out(0.6, 0.4)' });
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!finePointer) return undefined;
+
+    xTo.current = gsap.quickTo(el, 'x', { duration: 0.85, ease: 'power3.out' });
+    yTo.current = gsap.quickTo(el, 'y', { duration: 0.85, ease: 'power3.out' });
 
     const onMove = (e) => {
       const { height, width, left, top } = el.getBoundingClientRect();

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { attachHeroCanvasMirror } from '@/hooks/useHeroCanvasMirror';
+import { AuroraSymbolOutline } from '@/components/brand/AuroraSymbol';
+import { AURORA_CLIP_SEGMENTS } from '@/lib/auroraSymbolPaths';
 
 /**
  * Index home hero — B0iSZM4m.js / HomeHero.sc0cbmD3.css parity.
@@ -57,7 +59,11 @@ export default function HomeHero({ videoUrl }) {
     const root = rootRef.current;
     if (!root) return undefined;
 
-    gsap.set(getLogoPaths(), { scaleX: 0, scaleY: 1, transformOrigin: 'left center' });
+    const paths = getLogoPaths();
+    paths.forEach((path, i) => {
+      const origin = AURORA_CLIP_SEGMENTS[i]?.transformOrigin ?? 'center center';
+      gsap.set(path, { scaleX: 0, scaleY: 1, transformOrigin: origin, transformBox: 'fill-box' });
+    });
 
     const onIntroCompleted = () => {
       if (introHandledRef.current) return;
@@ -164,6 +170,7 @@ export default function HomeHero({ videoUrl }) {
         <div className="video-mask" aria-hidden>
           <div className="video-mask-item">
             <div className="video-duplicate" ref={videoDuplicateRef} />
+            <AuroraSymbolOutline className="home-hero-symbol-outline" strokeWidth={1} />
           </div>
         </div>
         <div className="scroll-down">

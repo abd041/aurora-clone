@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import HomeTitle from '@/components/home/HomeTitle';
+import useIsMobile from '@/hooks/useIsMobile';
+import { sharedUi } from '@/data/content';
 
 const SLIDER_INTERVAL = 4;
 
@@ -17,6 +19,7 @@ export default function HomeSlider({ realisations = [] }) {
   const lockRef = useRef(false);
   const ctxRef = useRef(null);
   const enterCtxRef = useRef(null);
+  const isMobile = useIsMobile();
 
   const items = Array.isArray(realisations) ? realisations.filter(Boolean) : [];
   const current = items[index] || null;
@@ -65,7 +68,7 @@ export default function HomeSlider({ realisations = [] }) {
     startInterval();
     setTimeout(() => {
       lockRef.current = false;
-    }, 950);
+    }, isMobile ? 720 : 1000);
   };
 
   const menuAnimationStyle = (i) => {
@@ -78,19 +81,21 @@ export default function HomeSlider({ realisations = [] }) {
     enterCtxRef.current?.revert?.();
     enterCtxRef.current = gsap.context(() => {
       const q = gsap.utils.selector(rootRef.current);
+      const btnEase = isMobile ? 'power2.out' : 'elastic.out(0.4, 0.3)';
+      const btnDuration = isMobile ? 0.65 : 1;
       gsap
         .timeline()
         .from(q('.slider-btn'), {
-          scale: 0,
-          duration: 1,
-          ease: 'elastic.out(0.4, 0.3)',
+          scale: isMobile ? 0.85 : 0,
+          duration: btnDuration,
+          ease: btnEase,
           clearProps: 'all',
-        }, 0.1)
+        }, 0.08)
         .from(q('.slider-menu li'), {
           autoAlpha: 0,
-          scale: 0,
-          stagger: 0.1,
-          duration: 1,
+          scale: isMobile ? 0.92 : 0,
+          stagger: isMobile ? 0.06 : 0.1,
+          duration: isMobile ? 0.6 : 1,
           ease: 'quart.out',
           clearProps: 'all',
         }, 0);
@@ -189,7 +194,7 @@ export default function HomeSlider({ realisations = [] }) {
             {current?.title || 'Réalisation'}
           </HomeTitle>
           <div className="slider-btn">
-            <Link href={`/realisations/${current?.slug || ''}`}>Découvrir</Link>
+            <Link href={`/realisations/${current?.slug || ''}`}>{sharedUi.sliderCta}</Link>
           </div>
           <ul className="slider-menu">
             {items.map((item, i) => (
@@ -197,8 +202,17 @@ export default function HomeSlider({ realisations = [] }) {
                 key={item.slug || i}
                 className={index === i ? 'active' : ''}
                 onClick={() => goTo(i)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    goTo(i);
+                  }
+                }}
                 style={menuAnimationStyle(i)}
-                role="presentation"
+                role="button"
+                tabIndex={0}
+                aria-current={index === i ? 'true' : undefined}
+                aria-label={item.title || 'Réalisation'}
               >
                 {item.title || 'Réalisation'}
               </li>

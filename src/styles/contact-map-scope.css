@@ -1,0 +1,32 @@
+/**
+ * Contact / agence map — Switzerland (same asset + indicator as index HomeMap).
+ */
+
+.contact-map--item.contact-map--item--switzerland {
+  aspect-ratio: 400 / 500;
+  flex: 1 1 auto;
+  max-width: min(36vw, 26rem);
+  min-height: min(32vw, 20rem);
+  position: relative;
+  width: 100%;
+}
+
+@media only screen and (max-width: 440px) {
+  .contact-map--item.contact-map--item--switzerland {
+    margin: 0 auto;
+    max-width: 88vw;
+    min-height: min(52vw, 18rem);
+  }
+}
+
+.contact-map--item--switzerland .map-background,
+.contact-map--item--switzerland .map-svg {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.contact-map--item--switzerland .map-svg {
+  pointer-events: none;
+}

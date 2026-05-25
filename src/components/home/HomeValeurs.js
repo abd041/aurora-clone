@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import HomeTitle from '@/components/home/HomeTitle';
 import useIsMobile from '@/hooks/useIsMobile';
+import { sharedUi } from '@/data/content';
 
 const PHYSICS_ITEMS = [
   { src: '/images/physics/1.png', sizePercent: 20 },
@@ -220,9 +221,9 @@ export default function HomeValeurs() {
       <div className="valeurs-grid">
         <div className="valeurs-text">
           <HomeTitle tag="h2" className="valeurs-title" delay={0.5}>
-            Our Values <br /> & ESG Commitments
+            <span dangerouslySetInnerHTML={{ __html: sharedUi.valeursTitle }} />
           </HomeTitle>
-          <p className="valeurs-desc">Ethics ⏤ Humanism ⏤ Transparency ⏤ Performance</p>
+          <p className="valeurs-desc">{sharedUi.valeursDesc}</p>
         </div>
         <div className="valeurs-container" ref={containerRef} />
       </div>

@@ -6,6 +6,7 @@ import CircleBtn from '@/components/ui/CircleBtn';
 import VideoPlayer from '@/components/shared/VideoPlayer';
 import useIsMobile from '@/hooks/useIsMobile';
 import useLazyInView from '@/hooks/useLazyInView';
+import { MARINA_COLORS } from '@/lib/marinaMotion';
 
 const DESC_LIMIT = 150;
 
@@ -72,7 +73,7 @@ export default function StackCards({ cards = [] }) {
           '--hide-opacity': 1,
           '--default-opacity': 0,
           scale: 0.9,
-          backgroundColor: '#F3C4C9',
+          backgroundColor: MARINA_COLORS.secondary,
         },
         0
       );

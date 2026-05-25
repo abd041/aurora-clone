@@ -3,19 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from '@/lib/gsap';
 import VideoPlayer from '@/components/shared/VideoPlayer';
+import HomeTitle from '@/components/home/HomeTitle';
 import { useCursorHandlers } from '@/lib/cursorStore';
 import useIsMobile from '@/hooks/useIsMobile';
-import useSplitLines from '@/hooks/useSplitLines';
-
-function AgenceHeroTitle({ children }) {
-  const ref = useRef(null);
-  useSplitLines(ref, { delay: 0.75 });
-  return (
-    <h1 className="agence-hero--title" ref={ref}>
-      {children}
-    </h1>
-  );
-}
 
 export default function AgenceHero({ title, videoBg, videoFull }) {
   const rootRef = useRef(null);
@@ -52,7 +42,6 @@ export default function AgenceHero({ title, videoBg, videoFull }) {
         role="presentation"
       >
         <div className="agence-hero--bg">
-          <div className="bg-voile" />
           {isMobile && (
             <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle
@@ -72,8 +61,8 @@ export default function AgenceHero({ title, videoBg, videoFull }) {
               />
               <defs>
                 <linearGradient id="agenceHeroGrad" x1="132" y1="28" x2="27.5" y2="132.5" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#F3C4C9" />
-                  <stop offset="1" stopColor="#977DBD" />
+                  <stop stopColor="var(--secondary)" />
+                  <stop offset="1" stopColor="var(--primary)" />
                 </linearGradient>
               </defs>
             </svg>
@@ -87,7 +76,9 @@ export default function AgenceHero({ title, videoBg, videoFull }) {
             preload="metadata"
           />
         </div>
-        <AgenceHeroTitle>{title}</AgenceHeroTitle>
+        <HomeTitle delay={0.5} duration={1.25} className="home-title title t-center">
+          {title}
+        </HomeTitle>
       </div>
       {playerOpen && (
         <VideoPlayer src={videoFull || videoBg} onClose={() => setPlayerOpen(false)} />

@@ -8,6 +8,7 @@ import useIsMobile from '@/hooks/useIsMobile';
 import useLazyInView from '@/hooks/useLazyInView';
 import { useApp } from '@/context/AppContext';
 import { getDeviceState } from '@/lib/device';
+import { AuroraSymbolOutline } from '@/components/brand/AuroraSymbol';
 
 function CloseBtnCenter({ onClick }) {
   return (
@@ -15,8 +16,8 @@ function CloseBtnCenter({ onClick }) {
       <div className="close-background" />
       <div className="close-item">
         <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-          <line x1="1" y1="11" x2="11" y2="1" stroke="black" strokeWidth="2" />
-          <line x1="1" y1="1" x2="11" y2="11" stroke="black" strokeWidth="2" />
+          <line x1="1" y1="11" x2="11" y2="1" stroke="currentColor" strokeWidth="2" />
+          <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" strokeWidth="2" />
         </svg>
       </div>
     </button>
@@ -39,6 +40,7 @@ export default function HomeVideo({
   const [fullscreen, setFullscreen] = useState(false);
   const [titleDelayInstant, setTitleDelayInstant] = useState(false);
   const timelinesRef = useRef([]);
+  const fullscreenRef = useRef(false);
 
   const setRootRef = (node) => {
     rootRef.current = node;
@@ -46,6 +48,7 @@ export default function HomeVideo({
   };
 
   const killTimelines = () => {
+    ScrollTrigger.getById('home-video-exit')?.kill();
     timelinesRef.current.forEach((tl) => {
       tl.scrollTrigger?.kill(false);
       tl.kill();
@@ -88,7 +91,22 @@ export default function HomeVideo({
           webkitMaskPosition: '100% 0%',
         };
 
+    const maskSizeFrom = isMobile
+      ? { width: mobileStart, height: mobileStart }
+      : { width: desktopStart, height: desktopStart };
+    const maskSizeTo = isMobile
+      ? { width: 80 * w, height: 80 * w }
+      : { width: 20 * w, height: 20 * w };
+
     gsap.set(q('.video-mask-item'), maskFrom);
+    gsap.set(q('.home-video-symbol-outline'), {
+      ...maskSizeFrom,
+      left: '50%',
+      top: '50%',
+      xPercent: -50,
+      yPercent: -50,
+      position: 'absolute',
+    });
 
     const maskTl = gsap.timeline({
       scrollTrigger: {
@@ -100,7 +118,9 @@ export default function HomeVideo({
       defaults: { ease: 'none' },
     });
 
-    maskTl.fromTo(q('.video-mask-item'), maskFrom, maskTo);
+    maskTl
+      .fromTo(q('.video-mask-item'), maskFrom, maskTo, 0)
+      .fromTo(q('.home-video-symbol-outline'), maskSizeFrom, maskSizeTo, 0);
 
     const titleHideTl = gsap.timeline({
       scrollTrigger: {
@@ -150,6 +170,23 @@ export default function HomeVideo({
         },
         'start+=0.1'
       );
+
+    const setFixedOverlayVisible = (visible) => {
+      if (visible && fullscreenRef.current) return;
+
+      gsap.set(q('.home-video--container, .video-mask'), {
+        autoAlpha: visible ? 1 : 0,
+        pointerEvents: visible ? 'auto' : 'none',
+      });
+    };
+
+    ScrollTrigger.create({
+      id: 'home-video-exit',
+      trigger: rootRef.current,
+      start: 'bottom top',
+      onEnter: () => setFixedOverlayVisible(false),
+      onLeaveBack: () => setFixedOverlayVisible(true),
+    });
 
     timelinesRef.current.push(maskTl, titleHideTl, uiRevealTl);
     requestAnimationFrame(() => ScrollTrigger.refresh());
@@ -201,8 +238,14 @@ export default function HomeVideo({
   }, [shouldLoad]);
 
   const openFullscreen = () => {
+    fullscreenRef.current = true;
     setFullscreen(true);
-    window.scrollTo({ top: window.innerHeight * 3, behavior: 'smooth' });
+    const targetY = window.innerHeight * 3;
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(targetY, { duration: 1.15, easing: (t) => 1 - (1 - t) ** 3 });
+    } else {
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }
     gsap.to(['.home-video--container', '.home-title'], {
       autoAlpha: 0,
       duration: 0.5,
@@ -216,9 +259,11 @@ export default function HomeVideo({
   };
 
   const closeFullscreen = () => {
+    fullscreenRef.current = false;
     setFullscreen(false);
+    const exitActive = ScrollTrigger.getById('home-video-exit')?.isActive;
     gsap.to(['.home-video--container', '.home-title'], {
-      autoAlpha: 1,
+      autoAlpha: exitActive ? 0 : 1,
       duration: 0.5,
       ease: 'quart.out',
     });
@@ -249,6 +294,11 @@ export default function HomeVideo({
               />
             )}
           </div>
+          <AuroraSymbolOutline
+            className="home-video-symbol-outline"
+            strokeWidth={1}
+            aria-hidden
+          />
         </div>
         {fullscreen && <CloseBtnCenter onClick={closeFullscreen} />}
         <div className="home-video--container">

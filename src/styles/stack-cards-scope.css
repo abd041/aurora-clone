@@ -1,0 +1,97 @@
+/**
+ * StackCards (home offers) — slate #326080 surface, cream editorial type.
+ */
+
+.stack-cards .card {
+  background-color: var(--marina-slate);
+}
+
+.stack-cards .card .card-text {
+  isolation: isolate;
+  z-index: 2;
+}
+
+.stack-cards .card .card-category {
+  background: rgba(var(--marina-cream-rgb), 0.94);
+  border: 1px solid rgba(var(--marina-sky-rgb), 0.58);
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.stack-cards .card .card-text h3 {
+  color: var(--text-on-media);
+  text-shadow: var(--text-shadow-media-title);
+}
+
+.stack-cards .card .card-text h4 {
+  color: rgba(var(--marina-cream-rgb), 0.82);
+  text-shadow: var(--text-shadow-media-category);
+}
+
+.stack-cards .card .card-text p {
+  color: rgba(var(--marina-cream-rgb), 0.9);
+  line-height: 1.55;
+  text-shadow: var(--text-shadow-media-link);
+}
+
+.stack-cards .card .card-text-container button {
+  background: rgba(var(--marina-cream-rgb), 0.92);
+  color: var(--primary);
+}
+
+.stack-cards .card .card-text .tags .tag {
+  background: rgba(var(--marina-cream-rgb), 0.1);
+  border: 1px solid rgba(var(--marina-cream-rgb), 0.72);
+  color: var(--text-on-media);
+  font-weight: 500;
+  text-shadow: var(--text-shadow-media-ui);
+}
+
+/* Decorative logo — keep composition, reduce dominance over copy */
+.stack-cards .card::before {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 34%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 34%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  opacity: calc(var(--default-opacity) * 0.52);
+}
+
+.stack-cards .card::after {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 34%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 34%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  opacity: calc(var(--hide-opacity) * 0.52);
+}
+
+.stack-cards .card .play-btn .circle-btn {
+  background: rgba(var(--marina-cream-rgb), 0.94);
+  border-color: rgba(var(--marina-cream-rgb), 0.98);
+  box-shadow: 0 2px 16px rgba(var(--marina-slate-rgb), 0.35), var(--elevation-card-hover);
+  color: var(--primary);
+}
+
+.stack-cards .card .play-btn .circle-btn svg path {
+  stroke: currentColor;
+}

@@ -96,10 +96,10 @@ export default function CustomCursor({ hidden = false }) {
             fill="none"
           />
           <path
-            className="draw-svg"
+            className="draw-svg cursor-play-icon"
             fill="none"
             d="M87.979 77.3083C89.6629 78.7077 89.6628 81.2923 87.979 82.6917L77.8366 91.1211C75.5561 93.0164 72.0995 91.3946 72.0995 88.4293L72.0995 71.5707C72.0995 68.6054 75.5561 66.9836 77.8366 68.8789L87.979 77.3083Z"
-            stroke="white"
+            stroke="currentColor"
           />
           <defs>
             <linearGradient
@@ -110,8 +110,8 @@ export default function CustomCursor({ hidden = false }) {
               y2="132.5"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#F3C4C9" />
-              <stop offset="1" stopColor="#977DBD" />
+              <stop stopColor="var(--secondary)" />
+              <stop offset="1" stopColor="var(--primary)" />
             </linearGradient>
           </defs>
         </svg>

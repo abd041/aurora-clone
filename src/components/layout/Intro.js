@@ -3,10 +3,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 import { useApp } from '@/context/AppContext';
+import { site } from '@/data/site';
 import useIsMobile from '@/hooks/useIsMobile';
-
-const LOGO_INTRO = '/_nuxt/logo-intro.FMLjELMt.png';
-const INTRO_BG_MOBILE = '/_nuxt/intro-bg-mobile.goTljaNO.png';
 
 export default function Intro() {
   const rootRef = useRef(null);
@@ -57,7 +55,7 @@ export default function Intro() {
     <div className="intro" ref={rootRef}>
       <div className="intro-background">
         {isMobile ? (
-          <img src={INTRO_BG_MOBILE} alt="" />
+          <img src={site.assets.introBgMobile} alt="" />
         ) : (
           <>
             <div className="intro-bg intro-bg--01" />
@@ -70,9 +68,9 @@ export default function Intro() {
       <div className="intro-container">
         <div className="intro-logo">
           <img
-            src={LOGO_INTRO}
+            src={site.brand.logoIntro}
             className="intro-logo--item"
-            alt="Logo"
+            alt={site.brand.name}
           />
         </div>
       </div>

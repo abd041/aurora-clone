@@ -5,15 +5,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { gsap } from '@/lib/gsap';
 import { useApp } from '@/context/AppContext';
-import { menuItems, menuDescription } from '@/data/content';
+import { menuItems, menuDescription, menuContact, site } from '@/data/site';
 import useIsMobile from '@/hooks/useIsMobile';
 import { useSplitLines } from '@/hooks/useSplitLines';
-
-const MENU_BG_MOBILE = '/_nuxt/intro-bg-mobile.goTljaNO.png';
-
-const MENU_DESCRIPTION =
-  menuDescription ||
-  "This project was originally a real project for an agency. Unfortunately, the visual and written content didn't meet the studio's standards, so we decided to release the website under a different name in order to showcase the project.";
+import { MARINA_COLORS, MARINA_DURATION, MARINA_EASE } from '@/lib/marinaMotion';
 
 function MenuDescription({ children }) {
   const ref = useRef(null);
@@ -42,7 +37,7 @@ export default function Menu() {
       timelineRef.current = null;
       lenis?.start();
     };
-  }, [lenis, isMobile]);
+  }, [lenis]);
 
   useEffect(() => {
     if (prevPathRef.current === null) {
@@ -72,20 +67,24 @@ export default function Menu() {
     const tl = gsap.timeline();
     timelineRef.current = tl;
 
+    const fastOpen = isMobile;
+    const openDuration = fastOpen ? 0.55 : 0.75;
+    const linkStagger = fastOpen ? 0.06 : 0.1;
+
     tl.addLabel('start')
       .from(q('.menu-background'), {
         opacity: 0,
-        duration: 0.75,
+        duration: openDuration,
         ease: 'quart.out',
         clearProps: 'all',
       }, 'start')
       .from(q('li a'), {
         yPercent: 100,
-        stagger: 0.1,
-        duration: 0.75,
+        stagger: linkStagger,
+        duration: openDuration,
         ease: 'quart.out',
         clearProps: 'all',
-      }, 'start+=0.2');
+      }, 'start+=0.15');
   };
 
   const handleLinkClick = () => {
@@ -97,19 +96,20 @@ export default function Menu() {
   };
 
   const handleListEnter = () => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     gsap.to('.menu-list li', {
-      color: '#977DBD',
-      duration: 0.25,
-      ease: 'quart.out',
+      color: MARINA_COLORS.primary,
+      duration: MARINA_DURATION.fast,
+      ease: MARINA_EASE.out,
     });
   };
 
   const handleListLeave = () => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     gsap.to('.menu-list li', {
-      color: '#F3C4C9',
-      duration: 0.25,
-      ease: 'quart.out',
-      clearProps: 'all',
+      clearProps: 'color',
+      duration: MARINA_DURATION.fast,
+      ease: MARINA_EASE.out,
     });
   };
 
@@ -117,7 +117,7 @@ export default function Menu() {
     <div className="menu page" ref={rootRef}>
       <div className="menu-background">
         {isMobile ? (
-          <img src={MENU_BG_MOBILE} alt="" />
+          <img src={site.assets.menuBgMobile} alt="" />
         ) : (
           <>
             <div className="menu-bg menu-bg--01" />
@@ -143,8 +143,17 @@ export default function Menu() {
               </li>
             ))}
           </ul>
-          <MenuDescription>{MENU_DESCRIPTION}</MenuDescription>
+          <MenuDescription>{menuDescription}</MenuDescription>
         </div>
+        <ul className="menu-contact">
+          {menuContact.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="link hide-u" onClick={handleLinkClick}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

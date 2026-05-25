@@ -1,0 +1,258 @@
+/**
+ * Marina design system — semantic tokens + legacy Aurora aliases.
+ * Import first in globals.css so aurora.css and scopes inherit these values.
+ *
+ * Architecture:
+ *   tokens-marina.css → aurora.css + scoped CSS → theme-marina.css
+ */
+
+:root {
+  /* ── Brand primitives ── */
+  --marina-cream: #fff1e7;
+  --marina-sky: #b5d2e6;
+  --marina-slate: #326080;
+  --marina-brown: #805232;
+
+  --marina-cream-rgb: 255, 241, 231;
+  --marina-sky-rgb: 181, 210, 230;
+  --marina-slate-rgb: 50, 96, 128;
+  --marina-brown-rgb: 128, 82, 50;
+
+  --marina-sky-soft: #d4e6f0;
+  --marina-sky-deep: #8eb5cf;
+  --marina-slate-muted: #5a7a92;
+
+  /* Surfaces */
+  --marina-card: #fff8f2;
+  --marina-card-elevated: #ffffff;
+  --marina-border-strong: #8eb5cf;
+
+  /* ── Semantic tokens ── */
+  --background: var(--marina-cream);
+  --foreground: var(--marina-slate);
+
+  --card: var(--marina-card-elevated);
+  --card-foreground: var(--marina-slate);
+
+  --primary: var(--marina-slate);
+  --primary-foreground: var(--marina-cream);
+
+  --secondary: var(--marina-sky);
+  --secondary-foreground: var(--marina-slate);
+
+  --accent: var(--marina-brown);
+  --accent-foreground: var(--marina-cream);
+
+  --muted: var(--marina-sky-soft);
+  --muted-foreground: var(--marina-slate-muted);
+
+  --destructive: #b44a3a;
+  --destructive-foreground: var(--marina-cream);
+
+  --border: var(--marina-sky);
+  --input: var(--marina-sky);
+  --ring: rgba(var(--marina-slate-rgb), 0.35);
+
+  /* Borders — single opacity scale */
+  --border-faint: rgba(var(--marina-sky-rgb), 0.18);
+  --border-subtle: rgba(var(--marina-sky-rgb), 0.28);
+  --border-emphasis: rgba(var(--marina-sky-rgb), 0.52);
+
+  /* Overlays */
+  --overlay-light: rgba(var(--marina-slate-rgb), 0.06);
+  --overlay-medium: rgba(var(--marina-slate-rgb), 0.22);
+  --overlay-heavy: rgba(var(--marina-slate-rgb), 0.4);
+  --overlay-vignette: rgba(var(--marina-slate-rgb), 0.12);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--marina-slate) 0%, var(--marina-sky) 100%);
+  --gradient-brand-underline: linear-gradient(
+    229.09deg,
+    var(--marina-slate) 2.34%,
+    var(--marina-sky) 97.65%
+  );
+  --gradient-brand-soft: linear-gradient(
+    244.1deg,
+    var(--marina-sky) 11.22%,
+    var(--marina-slate) 89.21%
+  );
+  --gradient-brand-horizontal: linear-gradient(90deg, var(--marina-slate), var(--marina-sky));
+  --gradient-warm-voile: linear-gradient(
+    64deg,
+    rgba(var(--marina-slate-rgb), 0.2) 47.85%,
+    rgba(var(--marina-sky-rgb), 0.35) 99.07%
+  );
+  --gradient-fade-top: linear-gradient(
+    180deg,
+    var(--background) 48.25%,
+    rgba(var(--marina-cream-rgb), 0) 82.5%
+  );
+  --gradient-fade-bottom: linear-gradient(0deg, var(--overlay-vignette), transparent);
+  --gradient-fade-image: linear-gradient(180deg, transparent, var(--overlay-vignette));
+  --gradient-indicator: radial-gradient(
+    var(--marina-sky) 0%,
+    rgba(var(--marina-slate-rgb), 0) 100%
+  );
+  --gradient-text-clip: linear-gradient(90deg, var(--marina-slate) 0%, var(--marina-sky) 100%);
+  --gradient-menu-fade: linear-gradient(90deg, var(--marina-cream), rgba(var(--marina-cream-rgb), 0.6));
+  --navbar-glass-bg: rgba(var(--marina-cream-rgb), 0.68);
+  --navbar-glass-border: rgba(var(--marina-sky-rgb), 0.42);
+  --shadow-navbar: 0 2px 16px rgba(var(--marina-slate-rgb), 0.1), 0 8px 28px rgba(var(--marina-slate-rgb), 0.06);
+  --text-shadow-nav-logo:
+    0 0 14px rgba(var(--marina-cream-rgb), 0.9),
+    0 1px 3px rgba(var(--marina-slate-rgb), 0.35),
+    0 2px 10px rgba(var(--marina-slate-rgb), 0.18);
+  --text-shadow-nav-menu-link:
+    0 1px 1px rgba(var(--marina-cream-rgb), 0.95),
+    0 2px 14px rgba(var(--marina-cream-rgb), 0.7),
+    0 2px 12px rgba(var(--marina-slate-rgb), 0.12);
+  --text-shadow-nav-menu-desc:
+    0 1px 10px rgba(var(--marina-cream-rgb), 0.85),
+    0 1px 6px rgba(var(--marina-slate-rgb), 0.1);
+  --gradient-menu-veil: linear-gradient(
+    145deg,
+    rgba(var(--marina-cream-rgb), 0.9) 0%,
+    rgba(var(--marina-cream-rgb), 0.78) 42%,
+    rgba(var(--marina-cream-rgb), 0.86) 100%
+  );
+
+  /* Hero / footer / intro overlays (single source of truth) */
+  --gradient-hero-overlay: linear-gradient(
+    180deg,
+    rgba(var(--marina-cream-rgb), 0.08) 0%,
+    rgba(var(--marina-slate-rgb), 0.14) 100%
+  );
+  --gradient-hero-overlay-index: linear-gradient(
+    180deg,
+    rgba(var(--marina-cream-rgb), 0.05) 0%,
+    rgba(var(--marina-slate-rgb), 0.08) 45%,
+    rgba(var(--marina-slate-rgb), 0.14) 100%
+  );
+  --gradient-footer-sky: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(var(--marina-sky-rgb), 0.16) 60%,
+    rgba(var(--marina-sky-rgb), 0.28) 100%
+  );
+  --gradient-footer-fade-top: linear-gradient(
+    180deg,
+    var(--background) 55%,
+    rgba(var(--marina-cream-rgb), 0) 100%
+  );
+  --gradient-intro-wash: linear-gradient(
+    180deg,
+    rgba(var(--marina-cream-rgb), 0.78) 0%,
+    rgba(var(--marina-cream-rgb), 0.92) 100%
+  );
+  --gradient-scrim-h1: linear-gradient(
+    180deg,
+    rgba(var(--marina-cream-rgb), 0.55),
+    rgba(var(--marina-cream-rgb), 0)
+  );
+  --gradient-map-voile: rgba(var(--marina-cream-rgb), 0.12);
+  --gradient-map-fade: linear-gradient(0deg, rgba(var(--marina-slate-rgb), 0.08), transparent);
+
+  /* Form feedback surfaces */
+  --surface-error-bg: rgba(var(--marina-brown-rgb), 0.06);
+  --surface-error-border: rgba(var(--marina-brown-rgb), 0.2);
+  --surface-success-bg: rgba(var(--marina-sky-rgb), 0.2);
+  --surface-success-border: rgba(var(--marina-sky-rgb), 0.45);
+
+  /* Typography shadows */
+  --text-shadow-hero: 0 2px 24px rgba(var(--marina-slate-rgb), 0.32);
+  --text-shadow-hero-body: 0 1px 16px rgba(var(--marina-slate-rgb), 0.38);
+  --text-shadow-hero-subtle: 0 2px 16px rgba(var(--marina-slate-rgb), 0.2);
+  --text-shadow-media: 0 1px 12px rgba(var(--marina-slate-rgb), 0.42), 0 2px 20px rgba(var(--marina-slate-rgb), 0.28);
+  --text-shadow-media-title:
+    0 1px 1px rgba(var(--marina-slate-rgb), 0.55),
+    0 2px 14px rgba(var(--marina-slate-rgb), 0.4),
+    0 4px 28px rgba(var(--marina-slate-rgb), 0.18);
+  --text-shadow-media-category:
+    0 1px 8px rgba(var(--marina-slate-rgb), 0.58),
+    0 0 18px rgba(var(--marina-slate-rgb), 0.22);
+  --text-shadow-media-link:
+    0 1px 10px rgba(var(--marina-slate-rgb), 0.52),
+    0 2px 16px rgba(var(--marina-slate-rgb), 0.28);
+  --text-shadow-media-ui:
+    0 1px 6px rgba(var(--marina-slate-rgb), 0.5),
+    0 0 14px rgba(var(--marina-slate-rgb), 0.24);
+  --text-on-media: var(--primary-foreground);
+  --gradient-media-scrim-bottom: linear-gradient(
+    180deg,
+    transparent 38%,
+    rgba(var(--marina-slate-rgb), 0.1) 65%,
+    rgba(var(--marina-slate-rgb), 0.22) 100%
+  );
+  --gradient-media-scrim-zone: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(var(--marina-slate-rgb), 0.04) 28%,
+    rgba(var(--marina-slate-rgb), 0.12) 72%,
+    rgba(var(--marina-slate-rgb), 0.18) 100%
+  );
+  --gradient-media-scrim-top: linear-gradient(
+    180deg,
+    rgba(var(--marina-slate-rgb), 0.14) 0%,
+    rgba(var(--marina-slate-rgb), 0.06) 35%,
+    transparent 72%
+  );
+  --placeholder-foreground: rgba(var(--marina-slate-rgb), 0.5);
+
+  /* Elevation (shadow language) */
+  --shadow-sm: 0 1px 2px rgba(var(--marina-slate-rgb), 0.05);
+  --shadow-md: 0 4px 16px rgba(var(--marina-slate-rgb), 0.08), 0 12px 32px rgba(var(--marina-slate-rgb), 0.06);
+  --shadow-lg: 0 8px 24px rgba(var(--marina-slate-rgb), 0.1), 0 24px 48px rgba(var(--marina-slate-rgb), 0.08);
+  --shadow-glow: 0 2px 12px rgba(var(--marina-slate-rgb), 0.1);
+  --shadow-inset-highlight: inset 0 1px 0 rgba(var(--marina-cream-rgb), 0.65);
+  --elevation-card: var(--shadow-sm), var(--shadow-inset-highlight);
+  --elevation-card-hover: var(--shadow-md), var(--shadow-inset-highlight);
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.875rem;
+  --radius-pill: 6.25rem;
+  --radius-full: 50%;
+
+  /* Motion — one interaction system */
+  --ease-marina: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-marina);
+  --transition-base: 0.35s var(--ease-marina);
+  --transition-slow: 0.5s var(--ease-marina);
+  --transition-interactive: 0.28s var(--ease-premium);
+
+  /* Glass / blur (aurora build uses --blur) */
+  --glass-bg: rgba(var(--marina-cream-rgb), 0.72);
+  --glass-border: rgba(var(--marina-sky-rgb), 0.65);
+  --glass-blur: 8px;
+  --blur: var(--glass-blur);
+  --blur-menu: 18px;
+  --blur-footer: 14px;
+
+  /* ── Legacy Aurora aliases (aurora.css build compat) ── */
+  --black: var(--background);
+  --black-rgb: var(--marina-cream-rgb);
+
+  --white: var(--foreground);
+  --white-rgb: var(--marina-slate-rgb);
+
+  --gray: var(--muted-foreground);
+  --gray-rgb: 90, 122, 146;
+
+  --blue: var(--primary);
+  --blue-rgb: var(--marina-slate-rgb);
+
+  --engagement: var(--secondary);
+  --engagement-rgb: var(--marina-sky-rgb);
+
+  --humanisme: var(--marina-sky-soft);
+  --humanisme-rgb: 212, 230, 240;
+
+  --performance: var(--marina-sky-deep);
+  --performance-rgb: 142, 181, 207;
+
+  --independance: var(--primary);
+  --independance-rgb: var(--marina-slate-rgb);
+}

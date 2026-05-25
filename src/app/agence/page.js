@@ -8,6 +8,8 @@ import AgenceValeurs from '@/components/agence/AgenceValeurs';
 import DoubleMarquee from '@/components/home/DoubleMarquee';
 import ContactMap from '@/components/agence/ContactMap';
 import { agence } from '@/data/content';
+import { pageTitle } from '@/lib/siteMeta';
+import { site } from '@/data/site';
 
 const AGENCE_VIDEOS = {
   hero: '/videos/789f4e986b5fa544580326b32ea727e9b0cfb7c1.mp4',
@@ -17,8 +19,8 @@ const AGENCE_VIDEOS = {
 };
 
 export const metadata = {
-  title: 'Agency - Aurora',
-  description: 'Discover Aurora Agency, your partner in innovative digital marketing solutions.',
+  title: pageTitle('Agency'),
+  description: site.seo.defaultDescription,
 };
 
 export default function AgencePage() {

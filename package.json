@@ -8,7 +8,8 @@
     "start": "next start",
     "build:css": "node scripts/extract-header-menu-css.js && node scripts/build-css.js",
     "build:splittext": "node scripts/build-splittext.js",
-    "prebuild": "node scripts/build-splittext.js",
+    "prebuild": "node scripts/build-splittext.js && node scripts/generate-aurora-mask.js",
+    "generate:masks": "node scripts/generate-aurora-mask.js && node scripts/generate-switzerland-map.js",
     "qa:visual": "node scripts/visual-qa.js",
     "qa:visual:live": "node scripts/visual-qa.js --base https://aurora-agency.ovh --label live",
     "qa:compare": "node scripts/compare-qa.js --clone clone-inner-v2 --live live-inner-v2 --inner-only",
@@ -32,6 +33,7 @@
     "lenis": "^1.3.23",
     "matter-js": "^0.20.0",
     "next": "^15.5.18",
+    "nodemailer": "^8.0.8",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   }

@@ -3,6 +3,8 @@ const state = {
   windowHeight: 800,
   isMobile: false,
   isDesktop: true,
+  isCoarsePointer: false,
+  prefersReducedMotion: false,
 };
 
 let initialized = false;
@@ -10,6 +12,10 @@ let initialized = false;
 function computeFlags() {
   state.isMobile = state.windowWidth < 768;
   state.isDesktop = state.windowWidth >= 1050;
+  if (typeof window !== 'undefined') {
+    state.isCoarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    state.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 }
 
 computeFlags();
@@ -31,6 +37,14 @@ export function isMobile() {
 
 export function isDesktop() {
   return state.isDesktop;
+}
+
+export function isCoarsePointer() {
+  return state.isCoarsePointer;
+}
+
+export function prefersReducedMotion() {
+  return state.prefersReducedMotion;
 }
 
 export function setVh() {

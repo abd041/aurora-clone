@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import { realisations } from '@/data/content';
 import RealisationDetailClient from '@/components/realisations/RealisationDetailClient';
+import { projectPageTitle } from '@/lib/siteMeta';
+import { site } from '@/data/site';
 
 export async function generateStaticParams() {
   return realisations.map((item) => ({ slug: item.slug }));
@@ -11,8 +13,8 @@ export async function generateMetadata({ params }) {
   const project = realisations.find((r) => r.slug === slug);
   const desc = project?.acf?.realisation_description;
   return {
-    title: project ? `${project.title} - Aurora` : 'Project - Aurora',
-    description: desc || 'Discover this Aurora realisation.',
+    title: projectPageTitle(project?.title),
+    description: desc || site.seo.defaultDescription,
   };
 }
 

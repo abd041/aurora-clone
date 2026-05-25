@@ -1,8 +1,20 @@
 import LoopLine from '@/components/ui/LoopLine';
 import SmallLogoBlue from '@/components/icons/SmallLogoBlue';
 import SmallLogoGray from '@/components/icons/SmallLogoGray';
+import { sharedUi } from '@/data/content';
+
+function MarqueeItems({ words, LogoIcon }) {
+  return words.flatMap((word) => [
+    <span key={word} className="marquee-word">
+      {word}
+    </span>,
+    <LogoIcon key={`${word}-logo`} />,
+  ]);
+}
 
 export default function DoubleMarquee({ gap = 30, transparent = false, small = false }) {
+  const words = sharedUi.marqueeWords;
+
   return (
     <section
       className={`double-marquee${transparent ? ' transparent-background' : ''}${small ? ' small' : ''}`.trim()}
@@ -15,14 +27,7 @@ export default function DoubleMarquee({ gap = 30, transparent = false, small = f
         autoPlay
         autoPlaySpeed={2}
       >
-        <span className="marquee-word">Ethics</span>
-        <SmallLogoBlue />
-        <span className="marquee-word">Humanism</span>
-        <SmallLogoBlue />
-        <span className="marquee-word">Transparency</span>
-        <SmallLogoBlue />
-        <span className="marquee-word">Performance</span>
-        <SmallLogoBlue />
+        <MarqueeItems words={words} LogoIcon={SmallLogoBlue} />
       </LoopLine>
       <LoopLine
         className="marquee__loop marquee--blue"
@@ -32,14 +37,7 @@ export default function DoubleMarquee({ gap = 30, transparent = false, small = f
         autoPlay
         autoPlaySpeed={2}
       >
-        <span className="marquee-word">Ethics</span>
-        <SmallLogoGray />
-        <span className="marquee-word">Humanism</span>
-        <SmallLogoGray />
-        <span className="marquee-word">Transparency</span>
-        <SmallLogoGray />
-        <span className="marquee-word">Performance</span>
-        <SmallLogoGray />
+        <MarqueeItems words={words} LogoIcon={SmallLogoGray} />
       </LoopLine>
     </section>
   );

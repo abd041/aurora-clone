@@ -3,19 +3,15 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { gsap } from '@/lib/gsap';
 import SecondaryBtn from '@/components/ui/SecondaryBtn';
-import useIsMobile from '@/hooks/useIsMobile';
 import useSplitLines from '@/hooks/useSplitLines';
+import { submitContactForm } from '@/lib/contactSubmit';
+import { site } from '@/data/site';
 
 const CONTACT_BG =
   '/images/f329b922e822a4c6e1929e0dd23ab82931249981-1536x1024.avif';
 
-const PROJECT_OPTIONS = [
-  { id: 'website', value: 'website', label: 'Website' },
-  { id: 'branding', value: 'branding', label: 'Branding' },
-  { id: 'photo_video', value: 'photo_video', label: 'Photo & Video' },
-  { id: 'brochure', value: 'brochure', label: 'Brochure' },
-  { id: 'autre', value: 'autre', label: 'Other' },
-];
+const PROJECT_OPTIONS = site.contactForm.projectTypes;
+const FORM = site.contactForm;
 
 function ContactTitle({ children }) {
   const ref = useRef(null);
@@ -28,7 +24,6 @@ function ContactTitle({ children }) {
 }
 
 export default function ContactForm({ background = CONTACT_BG }) {
-  const isMobile = useIsMobile();
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [company, setCompany] = useState('');
@@ -42,6 +37,9 @@ export default function ContactForm({ background = CONTACT_BG }) {
   const parallaxRef = useRef(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    if (window.matchMedia('(max-width: 768px)').matches) return undefined;
+
     parallaxRef.current?.scrollTrigger?.kill();
     parallaxRef.current?.kill();
 
@@ -86,8 +84,9 @@ export default function ContactForm({ background = CONTACT_BG }) {
       setError('Please enter a valid email address.');
       return;
     }
-    if (!/^[0-9]{10}$/.test(phone.replace(/\s/g, ''))) {
-      setError('Please enter a valid phone number (10 digits).');
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 8 || phoneDigits.length > 15) {
+      setError('Please enter a valid phone number.');
       return;
     }
 
@@ -96,24 +95,18 @@ export default function ContactForm({ background = CONTACT_BG }) {
     setSubmitting(true);
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          role,
-          company,
-          projects,
-          email,
-          phone: phone.replace(/\s/g, ''),
-          website: honeypot,
-        }),
+      const result = await submitContactForm({
+        name,
+        role,
+        company,
+        projects,
+        email,
+        phone: phoneDigits,
+        website: honeypot,
       });
 
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        setError(data.error || 'Unable to send your message. Please try again later.');
+      if (!result.ok) {
+        setError(result.error || 'Unable to send your message. Please try again later.');
         return;
       }
 
@@ -136,14 +129,10 @@ export default function ContactForm({ background = CONTACT_BG }) {
   return (
     <section className="contact-head">
       <div className="contact-left">
-        <div className="contact-fade" />
-        <div className="contact-overlay" />
         <img src={background} alt="Background contact" />
+        <ContactTitle>{FORM.pageTitle}</ContactTitle>
       </div>
       <div className="contact-right">
-        <ContactTitle>Contact</ContactTitle>
-        {error && <p className="error-message">{error}</p>}
-        {success && <p className="submit-message">{success}</p>}
         <form className="form" onSubmit={onSubmit} noValidate>
           <label
             className="contact-honeypot"
@@ -170,58 +159,36 @@ export default function ContactForm({ background = CONTACT_BG }) {
               type="text"
               id="name"
               name="name"
+              autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={submitting}
             />
           </fieldset>
-          {isMobile ? (
-            <>
-              <fieldset>
-                <label htmlFor="role">I am</label>
-                <input
-                  type="text"
-                  id="role"
-                  name="role"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  disabled={submitting}
-                />
-              </fieldset>
-              <fieldset>
-                <label htmlFor="company">from the company</label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  disabled={submitting}
-                />
-              </fieldset>
-            </>
-          ) : (
-            <fieldset>
-              <label htmlFor="role">I am</label>
-              <input
-                type="text"
-                id="role"
-                name="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                disabled={submitting}
-              />
-              <label htmlFor="company">from the company</label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                disabled={submitting}
-              />
-            </fieldset>
-          )}
+          <fieldset>
+            <label htmlFor="role">I am</label>
+            <input
+              type="text"
+              id="role"
+              name="role"
+              autoComplete="organization-title"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              disabled={submitting}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="company">from the company</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              autoComplete="organization"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              disabled={submitting}
+            />
+          </fieldset>
           <fieldset className="checkbox-inputs">
             <label className="fake-label">and I am contacting you for a project of</label>
             {PROJECT_OPTIONS.map((opt) => (
@@ -244,6 +211,7 @@ export default function ContactForm({ background = CONTACT_BG }) {
               type="email"
               id="email"
               name="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={submitting}
@@ -255,16 +223,27 @@ export default function ContactForm({ background = CONTACT_BG }) {
               type="tel"
               id="tel"
               name="tel"
+              autoComplete="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               disabled={submitting}
             />
           </fieldset>
+          {error && (
+            <p className="error-message" role="alert">
+              {error}
+            </p>
+          )}
+          {success && (
+            <p className="submit-message" role="status">
+              {success}
+            </p>
+          )}
           <div className="btn-submit">
             <SecondaryBtn tag="Button" type="submit" disabled={submitting}>
-              {submitting ? 'Sending…' : 'Request an appointment'}
+              {submitting ? FORM.submittingLabel : FORM.submitLabel}
             </SecondaryBtn>
-            <span>*All fields are required</span>
+            <span>{FORM.requiredNote}</span>
           </div>
         </form>
       </div>

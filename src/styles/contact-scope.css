@@ -1,0 +1,325 @@
+/**
+ * Contact page — grid layout, title containment, responsive form.
+ */
+
+.contact-head .contact-overlay,
+.contact-head .contact-fade,
+.contact-left .contact-overlay,
+.contact-left .contact-fade {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.contact-head {
+  display: grid;
+  grid-template-columns: minmax(0, 42%) minmax(0, 58%);
+  grid-template-rows: minmax(0, 1fr);
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-head .contact-left {
+  container-type: inline-size;
+  grid-column: 1;
+  grid-row: 1;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+.contact-head .contact-left img {
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  width: 100%;
+}
+
+.contact-head .contact-title {
+  align-items: unset;
+  bottom: clamp(1.5rem, 8vh, 4rem);
+  display: block;
+  font-size: clamp(2.75rem, 18cqi, 6.25rem);
+  height: auto;
+  left: clamp(1.25rem, 4vw, 1.875rem);
+  line-height: 0.88;
+  margin: 0;
+  max-width: calc(100% - clamp(2.5rem, 8vw, 3.75rem));
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
+  right: auto;
+  text-align: left;
+  top: auto;
+  transform: none;
+  width: auto;
+  z-index: 2;
+}
+
+.contact-head .contact-title::before {
+  content: none !important;
+  display: none !important;
+}
+
+.contact-head .contact-right {
+  align-items: center;
+  background: var(--background);
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  isolation: isolate;
+  justify-content: center;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 5vw, 3.5rem);
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.contact-head .form {
+  font-size: clamp(1.0625rem, 1.15vw, 1.5625rem);
+  line-height: 1.55;
+  margin-inline: auto;
+  max-width: 36rem;
+  padding: clamp(1.5rem, 4vh, 3rem) 0 clamp(1.5rem, 3vh, 2.5rem);
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.contact-head .form fieldset {
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin-bottom: clamp(1rem, 3vh, 2rem);
+  min-width: 0;
+  width: 100%;
+}
+
+.contact-head .form fieldset:not(.checkbox-inputs) label {
+  color: var(--foreground);
+  flex-shrink: 0;
+}
+
+.contact-head .form fieldset:not(.checkbox-inputs) input {
+  background: transparent !important;
+  border: none;
+  border-bottom: 0.125rem dotted var(--input);
+  border-radius: 0;
+  box-shadow: none !important;
+  caret-color: var(--primary);
+  color: var(--muted-foreground);
+  flex: 1 1 8rem;
+  font-size: inherit;
+  font-weight: 300;
+  line-height: 1.4;
+  min-width: 0;
+  padding: 0.1em 0 0.2em;
+  width: auto;
+}
+
+.contact-head .form fieldset:not(.checkbox-inputs) input::placeholder {
+  color: var(--placeholder-foreground);
+}
+
+.contact-head .form fieldset:not(.checkbox-inputs) input:focus {
+  border-bottom-color: var(--primary);
+  color: var(--foreground);
+  outline: none;
+}
+
+.contact-head .form fieldset:not(.checkbox-inputs) input:disabled {
+  opacity: 0.55;
+}
+
+.contact-head .form input:-webkit-autofill,
+.contact-head .form input:-webkit-autofill:hover,
+.contact-head .form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--muted-foreground) !important;
+  box-shadow: 0 0 0 1000px var(--background) inset !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
+  border-bottom: 0.125rem dotted var(--input) !important;
+  transition: background-color 99999s ease-out 0s;
+}
+
+.contact-head .form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--foreground) !important;
+  border-bottom-color: var(--primary) !important;
+}
+
+.contact-head .form .checkbox-inputs {
+  align-items: center;
+  gap: 0.5rem 0.625rem;
+}
+
+.contact-head .form .checkbox-inputs .fake-label {
+  color: var(--foreground);
+  flex: 0 0 100%;
+  font-size: inherit;
+  margin-bottom: 0.25rem;
+  width: 100%;
+}
+
+.contact-head .form .checkbox-inputs label:not(.fake-label) {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.contact-head .form .error-message,
+.contact-head .form .submit-message {
+  flex: 0 0 100%;
+  font-family: Almarena Mono, sans-serif;
+  line-height: 1.4;
+  margin: 0.5rem 0 0;
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  width: 100%;
+}
+
+.contact-head .form .btn-submit {
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.contact-head .form .btn-submit .secondary-btn {
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: clamp(0.9375rem, 1vw, 1.125rem);
+  font-weight: 400;
+  margin: 0;
+  max-width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.75rem;
+  white-space: normal;
+}
+
+.contact-head .form .btn-submit .secondary-btn:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.contact-head .form .btn-submit span {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  .contact-head {
+    grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+  }
+
+  .contact-head .contact-title {
+    font-size: clamp(2.5rem, 16cqi, 5rem);
+    max-width: calc(100% - 2.5rem);
+  }
+
+  .contact-head .form {
+    max-width: 32rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .contact-head {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    height: auto;
+    max-height: none;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .contact-head .contact-left {
+    grid-column: 1;
+    grid-row: 1;
+    height: clamp(16rem, 42vh, 22rem);
+    min-height: clamp(16rem, 42vh, 22rem);
+  }
+
+  .contact-head .contact-title {
+    bottom: clamp(1rem, 4vh, 1.75rem);
+    font-size: clamp(2.75rem, 14vw, 4.5rem);
+    left: 50%;
+    max-width: calc(100% - 2.5rem);
+    text-align: center;
+    transform: translateX(-50%);
+  }
+
+  .contact-head .contact-right {
+    grid-column: 1;
+    grid-row: 2;
+    height: auto;
+    justify-content: flex-start;
+    max-height: none;
+    overflow: visible;
+    padding: 1.25rem 1.25rem 2.5rem;
+  }
+
+  .contact-head .form {
+    font-size: 1.125rem;
+    max-width: 100%;
+    padding: 0.5rem 0 1.5rem;
+  }
+
+  .contact-head .form fieldset:not(.checkbox-inputs) {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .contact-head .form fieldset:not(.checkbox-inputs) input {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .contact-head .form .checkbox-inputs {
+    font-size: 0.9375rem;
+  }
+
+  .contact-head .form .btn-submit {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .contact-head .form .btn-submit .secondary-btn {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .contact-head .contact-left {
+    height: 50vh;
+    min-height: 50vh;
+  }
+
+  .contact-head .contact-title {
+    font-size: clamp(2.5rem, 16vw, 3.75rem);
+    margin: 0;
+  }
+
+  .contact-head .contact-right {
+    padding: 1rem 1.25rem 6.25rem;
+  }
+
+  .contact-head .form {
+    font-size: 1.0625rem;
+  }
+
+  .contact-head .form .checkbox-inputs {
+    font-size: 0.875rem;
+  }
+}

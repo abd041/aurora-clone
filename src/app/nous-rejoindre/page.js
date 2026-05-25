@@ -2,11 +2,13 @@ import JoinHero from '@/components/join/JoinHero';
 import RejoindreOffres from '@/components/join/RejoindreOffres';
 import LoopLine from '@/components/ui/LoopLine';
 import { join } from '@/data/content';
+import { pageTitle } from '@/lib/siteMeta';
+import { site } from '@/data/site';
 import { Fragment } from 'react';
 
 export const metadata = {
-  title: 'Join us - Aurora',
-  description: 'Join the Aurora team and participate in our innovative digital marketing projects.',
+  title: pageTitle('Join us'),
+  description: site.seo.defaultDescription,
 };
 
 export default function NousRejoindrePage() {
@@ -28,7 +30,7 @@ export default function NousRejoindrePage() {
         >
           {[0, 1].map((i) => (
             <Fragment key={i}>
-              <span className="marquee-word"> Job openings </span>
+              <span className="marquee-word"> {join.marquee_word} </span>
               <span className="marquee-number">{join.jobs?.length || 0}</span>
             </Fragment>
           ))}

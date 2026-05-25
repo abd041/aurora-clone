@@ -3,6 +3,7 @@
 import { createElement, useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 import { ScrollTrigger } from '@/lib/gsap';
+import { MARINA_COLORS } from '@/lib/marinaMotion';
 import { splitByType } from '@/lib/textSplit';
 
 export default function RevealLines({
@@ -51,7 +52,7 @@ export default function RevealLines({
 
     const fromVars = { opacity: 0.4, stagger: 0.1 };
     if (split === 'words' && theme === 'blue') {
-      fromVars.color = '#977DBD';
+      fromVars.color = MARINA_COLORS.primary;
     }
 
     const tl = gsap.timeline({

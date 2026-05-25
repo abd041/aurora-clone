@@ -1,10 +1,11 @@
 import HomePageClient from '@/components/home/HomePageClient';
 import { homepageData, realisations } from '@/data/content';
+import { pageTitle } from '@/lib/siteMeta';
+import { site } from '@/data/site';
 
 export const metadata = {
-  title: 'Home - Aurora',
-  description:
-    'Welcome to Aurora, your partner in innovative digital marketing solutions.',
+  title: pageTitle('Home'),
+  description: site.seo.defaultDescription,
 };
 
 export default function HomePage() {

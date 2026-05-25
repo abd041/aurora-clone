@@ -29,16 +29,16 @@ export default function ArrowIcon({ className = '' }) {
       ref={rootRef}
       aria-hidden
     >
-      <path d="M24.2275 10L0.314508 10" stroke="white" strokeWidth="1.5" />
+      <path d="M24.2275 10L0.314508 10" stroke="currentColor" strokeWidth="1.5" />
       <path
         className="inversed-path"
         d="M0.000465669 10C5.55919 10 10.0654 14.4772 10.0654 20"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="1.5"
       />
       <path
         d="M10.0669 7.27686e-07C10.0669 5.52285 5.56068 10 0.00195312 10"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="1.5"
       />
     </svg>

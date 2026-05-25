@@ -1,9 +1,11 @@
 import RealisationsSlider from '@/components/realisations/RealisationsSlider';
 import { realisations } from '@/data/content';
+import { pageTitle } from '@/lib/siteMeta';
+import { site } from '@/data/site';
 
 export const metadata = {
-  title: 'Works - Aurora',
-  description: 'Discover our portfolio of luxury hospitality projects.',
+  title: pageTitle('Works'),
+  description: site.seo.defaultDescription,
 };
 
 export default function RealisationsPage() {

@@ -1,19 +1,18 @@
 import './globals.css';
 import AppProvider from '@/components/providers/AppProvider';
+import { site } from '@/data/site';
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Aurora Agency',
-  description:
-    'Where luxury outdoor meets glamping excellence, integrated marketing and communication, across the world.',
+  title: site.seo.defaultTitle,
+  description: site.seo.defaultDescription,
   appleWebApp: {
-    title: 'Aurora',
+    title: site.brand.shortName,
   },
   openGraph: {
-    title: 'Aurora Agency',
-    description:
-      'Where luxury outdoor meets glamping excellence, integrated marketing and communication, across the world.',
-    images: ['/og.jpg'],
+    title: site.seo.defaultTitle,
+    description: site.seo.defaultDescription,
+    images: [site.seo.ogImage],
   },
 };
 

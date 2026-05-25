@@ -1,23 +1,29 @@
+@import '../styles/tokens-marina.css';
 @import '../styles/aurora.css';
 @import '../styles/navbar-scope.css';
 @import '../styles/realisations-scope.css';
 @import '../styles/home-hero-scope.css';
 @import '../styles/home-video-scope.css';
+@import '../styles/agence-hero-scope.css';
+@import '../styles/contact-map-scope.css';
+@import '../styles/contact-scope.css';
+@import '../styles/join-hero-scope.css';
+@import '../styles/stack-cards-scope.css';
+@import '../styles/home-valeurs-scope.css';
+@import '../styles/index-landing-scope.css';
+@import '../styles/aurora-symbol.css';
+/* Marina theme — single production layer (see tokens-marina.css + theme-marina.css) */
+@import '../styles/theme-marina.css';
 
 /* Safari / iOS compositing stability (does not alter signed-off GSAP timelines) */
 @supports (-webkit-touch-callout: none) {
   .video-mask-item,
   .home-video .video-mask video,
-  .circle-btn,
   .header,
   .menu.page,
   .header-right .menu {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-  }
-
-  .circle-btn {
-    -webkit-backdrop-filter: blur(var(--blur));
   }
 
   .fixed,
@@ -26,6 +32,15 @@
   .home-video .video-mask {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  @supports (-webkit-touch-callout: none) {
+    .circle-btn {
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      backdrop-filter: blur(var(--glass-blur));
+    }
   }
 }
 

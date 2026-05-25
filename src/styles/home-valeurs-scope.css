@@ -1,0 +1,67 @@
+/**
+ * HomeValeurs — text vs Matter.js physics layering (prevents title clipping).
+ */
+
+.home-valeurs .valeurs-grid {
+  min-height: calc(100vh - 9.375rem);
+  position: relative;
+}
+
+.home-valeurs .valeurs-text {
+  align-items: flex-start;
+  box-sizing: border-box;
+  isolation: isolate;
+  justify-content: center;
+  max-width: min(36rem, 46vw);
+  padding: 10vh clamp(1.25rem, 3vw, 2rem) 2rem clamp(1.25rem, 4vw, 1.875rem);
+  position: relative;
+  text-align: left;
+  width: min(46vw, 36rem);
+  z-index: 3;
+}
+
+.home-valeurs .valeurs-text .valeurs-title {
+  line-height: 1;
+  max-width: 100%;
+  text-align: left;
+  width: 100%;
+}
+
+.home-valeurs .valeurs-text .valeurs-title .split-parent {
+  overflow: visible;
+  padding-right: 0.35em;
+}
+
+.home-valeurs .valeurs-text .valeurs-desc {
+  max-width: 21rem;
+  text-align: left;
+  width: 100%;
+}
+
+/* Physics canvas — right column only so shapes do not cover the title */
+.home-valeurs .valeurs-container {
+  left: 40%;
+  pointer-events: none;
+  width: 60%;
+  z-index: 1;
+}
+
+.home-valeurs .valeurs-container canvas {
+  pointer-events: auto;
+}
+
+@media only screen and (max-width: 440px) {
+  .home-valeurs .valeurs-text {
+    max-width: 100%;
+    padding: 7vh 1.5rem 42vh;
+    width: 100%;
+  }
+
+  .home-valeurs .valeurs-container {
+    bottom: 0;
+    height: 45%;
+    left: 0;
+    top: auto;
+    width: 100%;
+  }
+}

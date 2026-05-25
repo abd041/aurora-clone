@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { gsap } from '@/lib/gsap';
 import { useApp } from '@/context/AppContext';
-import Logo from '@/components/icons/Logo';
+import BrandLogo from '@/components/brand/BrandLogo';
 
 /**
  * Site header (original Header.vue / data-v-451ea45a).
@@ -39,8 +39,8 @@ export default function Header({ errorLayout: errorLayoutProp }) {
     const menuBtn = rootRef.current?.querySelector('.menu');
     if (menuBtn) {
       gsap.to(menuBtn, {
-        duration: 0.15,
-        scale: 0.9,
+        duration: 0.12,
+        scale: 0.94,
         ease: 'power2.out',
         yoyo: true,
         repeat: 1,
@@ -56,7 +56,7 @@ export default function Header({ errorLayout: errorLayoutProp }) {
     >
       <div className="header-left">
         <Link href="/">
-          <Logo className="Icon no-size" />
+          <BrandLogo className="Icon no-size" />
         </Link>
       </div>
       {!errorLayout && (

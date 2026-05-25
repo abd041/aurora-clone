@@ -43,7 +43,7 @@
 }
 
 .realisations-slider .slider-bg .fade-bg {
-  background: linear-gradient(180deg, transparent, #000);
-  opacity: 0.7;
+  background: var(--gradient-media-scrim-bottom);
+  opacity: 0.68;
   z-index: 0;
 }

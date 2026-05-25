@@ -1,0 +1,158 @@
+/* Footer watermark — same mark as index hero (square clip + outline) */
+.footer-logo {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.footer-logo .footer-logo-watermark.aurora-hero-mark {
+  animation: aurora-footer-float 8s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  will-change: transform;
+}
+
+.footer-logo .aurora-hero-mark__item {
+  aspect-ratio: 1 / 1;
+  clip-path: url(#footerHeroMark);
+  height: auto;
+  max-width: 37.5rem;
+  position: relative;
+  width: min(31.25vw, 37.5rem);
+  -webkit-clip-path: url(#footerHeroMark);
+}
+
+.footer-logo .aurora-hero-mark__fill {
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    rgba(var(--marina-sky-rgb), 0.35) 0%,
+    rgba(var(--marina-slate-rgb), 0.08) 45%,
+    transparent 72%
+  );
+  inset: 0;
+  position: absolute;
+}
+
+.footer-logo .aurora-hero-mark .home-hero-symbol-outline {
+  color: rgba(var(--marina-slate-rgb), 0.55);
+  filter: drop-shadow(0 2px 8px rgba(var(--marina-slate-rgb), 0.15));
+}
+
+/* HomeVideo — thin figure-8 synced with mask scroll (GSAP sets width/height) */
+.home-video-symbol-outline {
+  color: rgba(var(--marina-slate-rgb), 0.5);
+  filter: drop-shadow(0 2px 8px rgba(var(--marina-slate-rgb), 0.12));
+  pointer-events: none;
+  will-change: width, height, transform;
+  z-index: 3;
+}
+
+@keyframes aurora-footer-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Hero thin outline over masked video */
+.home-hero-symbol-outline {
+  color: rgba(var(--marina-slate-rgb), 0.55);
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.index > .home-hero .video-mask-item .home-hero-symbol-outline {
+  filter: drop-shadow(0 2px 10px rgba(var(--marina-slate-rgb), 0.18));
+}
+
+/* Switzerland map — Interlaken indicator */
+.map-indicator {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.map-indicator__glow {
+  animation: map-indicator-glow 3.2s ease-in-out infinite;
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+.map-indicator .svg-point:not(.svg-circle) {
+  filter: drop-shadow(0 0 3px rgba(var(--marina-sky-rgb), 0.35));
+}
+
+@keyframes map-indicator-glow {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.42;
+    transform: scale(1.05);
+  }
+}
+
+/* Switzerland map — fill available panel space (default was 65% × 50%) */
+.home-map--left .left-container .left-map.left-map--switzerland {
+  flex: 1 1 0;
+  height: auto;
+  margin: 2.5vh auto 1vh;
+  max-height: 82vh;
+  min-height: min(48vh, 26rem);
+  width: 92%;
+}
+
+@media only screen and (max-width: 440px) {
+  .home-map--left .left-container .left-map.left-map--switzerland {
+    flex: 0 0 auto;
+    min-height: min(46vh, 22rem);
+    width: 88%;
+  }
+}
+
+.home-map .map-background--switzerland img,
+.home-map .map-background--switzerland svg,
+.contact-map .map-background--switzerland img,
+.contact-map .map-background--switzerland svg {
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.home-map .map-svg svg,
+.home-map .map-svg-layer,
+.contact-map .map-svg svg,
+.contact-map .map-svg-layer {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+@media only screen and (max-width: 440px) {
+  .footer-logo .aurora-hero-mark__item {
+    width: 80vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-logo .footer-logo-watermark,
+  .footer-logo .aurora-symbol-outline,
+  .map-indicator__glow {
+    animation: none;
+  }
+}

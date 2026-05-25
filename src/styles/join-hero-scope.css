@@ -1,0 +1,76 @@
+/**
+ * Join / nous-rejoindre hero — figure-8 mask centered on viewport (matches index HomeHero).
+ */
+
+.rejoindre .hero-video-sticky {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.rejoindre .hero-video-sticky .video-mask {
+  height: 100vh;
+  height: 100dvh;
+  inset: 0 auto auto 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.rejoindre .hero-video-sticky .video-mask-center {
+  height: 100%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 31.25vw;
+}
+
+.rejoindre .hero-video-sticky .video-mask-item {
+  aspect-ratio: 1 / 1;
+  clip-path: url(#indexLogo);
+  height: auto;
+  isolation: isolate;
+  position: relative;
+  width: 100%;
+}
+
+@media only screen and (max-width: 440px) {
+  .rejoindre .hero-video-sticky .video-mask-center {
+    width: 80vw;
+  }
+}
+
+.rejoindre .hero-video-sticky .video-mask-item img {
+  height: 100vh;
+  inset: 0;
+  left: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+}
+
+.rejoindre .hero-video-sticky .video-mask-item .join-hero-symbol-outline {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.rejoindre .hero-video-sticky h1 {
+  position: relative;
+  z-index: 2;
+}
+
+.rejoindre .hero-video-sticky .hero-desc {
+  position: relative;
+  z-index: 2;
+}

@@ -15,11 +15,13 @@ import { initDevice } from '@/lib/device';
 function AppShell({ children }) {
   const pathname = usePathname();
   const { inIntro, menuOpen, loaded, setLoaded, completeIntro } = useApp();
+  const menuOpenClass = menuOpen ? ' app--menu-open' : '';
   const [pageClass, setPageClass] = useState('');
   const isFirstRoute = useRef(true);
 
   const isErrorLayout = !pathname || pathname.includes('error');
-  const showFooterDescription = pathname !== '/';
+  const showFooterDescription =
+    pathname !== '/' && pathname !== '/agence';
   const showCustomCursor = pathname === '/agence';
 
   useEffect(() => {
@@ -81,7 +83,9 @@ function AppShell({ children }) {
   }, [pathname, inIntro]);
 
   return (
-    <div className={`app route--${pathname?.replace(/^\//, '') || 'index'}${loaded ? '' : ' app--booting'}`}>
+    <div
+      className={`app route--${pathname?.replace(/^\//, '') || 'index'}${loaded ? '' : ' app--booting'}${menuOpenClass}`}
+    >
       {inIntro && <Intro />}
       {!inIntro && <Header errorLayout={isErrorLayout} />}
       <MenuTransition open={menuOpen} />

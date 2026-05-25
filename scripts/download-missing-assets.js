@@ -21,6 +21,7 @@ const extraPaths = [
   '/_nuxt/mask-menu.C30cC7M_.png',
   '/_nuxt/footer-logo.DGEgvHlG.png',
   '/_nuxt/map-france-less-dotted.BJ8qf9St.png',
+  '/_nuxt/map-switzerland-less-dotted.svg',
   '/_nuxt/map-france-dotted.D6Ojo-by.png',
   '/_nuxt/intro-bg-mobile.goTljaNO.png',
   '/_nuxt/other-projects.Cjq-Ezm8.png',
