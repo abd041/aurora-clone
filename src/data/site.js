@@ -62,8 +62,8 @@ export const site = {
 
   /** Full-screen navigation menu */
   menu: {
-    description:
-      "This project was originally a real project for an agency. Unfortunately, the visual and written content didn't meet the studio's standards, so we decided to release the website under a different name in order to showcase the project.",
+    /** Optional text at bottom of menu. Set to '' to hide. */
+    description: '',
     links: [
       { titre: 'Agency', to: '/agence' },
       { titre: 'Works', to: '/realisations' },

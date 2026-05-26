@@ -143,7 +143,9 @@ export default function Menu() {
               </li>
             ))}
           </ul>
-          <MenuDescription>{menuDescription}</MenuDescription>
+          {menuDescription?.trim?.() ? (
+            <MenuDescription>{menuDescription}</MenuDescription>
+          ) : null}
         </div>
         <ul className="menu-contact">
           {menuContact.map((link) => (

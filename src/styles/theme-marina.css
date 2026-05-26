@@ -391,9 +391,17 @@ input:focus-visible,
 
 .index .home-video--container p {
   color: rgba(var(--marina-slate-rgb), 0.88);
-  text-shadow:
-    0 1px 0 rgba(var(--marina-cream-rgb), 0.85),
-    0 1px 14px rgba(var(--marina-cream-rgb), 0.58);
+  text-shadow: none;
+}
+
+/* Mobile readability: add a subtle scrim behind the paragraph (instead of shadow) */
+@media only screen and (max-width: 440px) {
+  .index .home-video--container p {
+    background: rgba(var(--marina-cream-rgb), 0.78);
+    border: 1px solid rgba(var(--marina-sky-rgb), 0.28);
+    border-radius: 1rem;
+    padding: 0.9rem 1rem;
+  }
 }
 
 .index .home-title {
