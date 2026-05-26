@@ -1,5 +1,6 @@
 import { site } from '@/data/site';
 import Logo from '@/components/icons/Logo';
+import { AuroraSymbolFilled } from '@/components/brand/AuroraSymbol';
 
 /**
  * Header wordmark — uses site.brand.logoWordmark image when set, else built-in SVG.
@@ -43,19 +44,10 @@ export function BrandIcon({ className = 'Icon Icon--logo-small no-size', size = 
   }
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      fill="none"
-      viewBox="0 0 40 40"
+    <AuroraSymbolFilled
       className={className}
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        d="M0 20V10c5.524 0 10-4.477 10-10h10.002c0 11.046-8.956 20-20.002 20M40.006 20V10c-5.524 0-10-4.477-10-10H20.004c0 11.046 8.956 20 20.002 20M0 40V30c5.524 0 10-4.478 10-10.001h10.002c0 11.046-8.956 20-20.002 20M40.006 40V30c-5.524 0-10-4.478-10-10.001H20.004c0 11.046 8.956 20 20.002 20"
-      />
-    </svg>
+      size={size}
+      aria-label={name}
+    />
   );
 }

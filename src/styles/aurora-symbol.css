@@ -143,6 +143,44 @@
   width: 100%;
 }
 
+/* Homepage: make the dotted Switzerland map fill the whole panel */
+.home-map--left .left-container .left-map.left-map--switzerland .map-background--switzerland img {
+  object-fit: cover;
+  transform: translateZ(0) scale(1.12);
+  transform-origin: center;
+}
+
+.home-map--left .left-container .left-map.left-map--switzerland .map-svg svg {
+  transform: translateZ(0) scale(1.12);
+  transform-origin: center;
+}
+
+@media only screen and (max-width: 440px) {
+  .home-map--left .left-container .left-map.left-map--switzerland .map-background--switzerland img,
+  .home-map--left .left-container .left-map.left-map--switzerland .map-svg svg {
+    transform: translateZ(0) scale(1.18);
+  }
+}
+
+/* Agence / Contact map: match homepage “fill panel” behavior */
+.contact-map--item--switzerland .map-background--switzerland img {
+  object-fit: cover;
+  transform: translateZ(0) scale(1.12);
+  transform-origin: center;
+}
+
+.contact-map--item--switzerland .map-svg svg {
+  transform: translateZ(0) scale(1.12);
+  transform-origin: center;
+}
+
+@media only screen and (max-width: 440px) {
+  .contact-map--item--switzerland .map-background--switzerland img,
+  .contact-map--item--switzerland .map-svg svg {
+    transform: translateZ(0) scale(1.18);
+  }
+}
+
 @media only screen and (max-width: 440px) {
   .footer-logo .aurora-hero-mark__item {
     width: 80vw;

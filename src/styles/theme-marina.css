@@ -278,6 +278,7 @@ input:focus-visible,
 .index .home-logos {
   background: var(--marina-brown);
   border-top-color: rgba(var(--marina-cream-rgb), 0.22);
+  margin-top: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .index .home-logos--title .title,
@@ -1077,6 +1078,12 @@ h1::before {
 }
 
 @media only screen and (max-width: 440px) {
+  /* Home logos — add breathing room above headline (mobile) */
+  .index .home-logos {
+    padding-top: 4.5rem;
+    margin-top: 1.5rem;
+  }
+
   .home-slider .slider-container::before {
     height: 82%;
     max-width: 100%;

@@ -95,3 +95,22 @@
 .stack-cards .card .play-btn .circle-btn svg path {
   stroke: currentColor;
 }
+
+/* Agency page: extra room so sticky cards don't clip at section boundary */
+.agence-cards .stack-cards {
+  padding-bottom: 12vh;
+}
+
+@media only screen and (max-width: 440px) {
+  .stack-cards {
+    padding-bottom: 5rem;
+  }
+
+  .stack-cards .card {
+    margin-bottom: 2.5rem;
+  }
+
+  .agence-cards .stack-cards {
+    padding-bottom: 6rem;
+  }
+}
