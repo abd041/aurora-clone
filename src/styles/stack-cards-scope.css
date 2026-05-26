@@ -117,12 +117,18 @@
     justify-content: center;
     line-height: 1;
     margin-left: 0.35rem;
+    padding: 0.05rem 0.35rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     vertical-align: middle;
   }
 
   .stack-cards .card .card-text-container button {
-    height: 1.25rem;
-    width: 1.25rem;
+    height: auto;
+    width: auto;
   }
 
   .agence-cards .stack-cards {

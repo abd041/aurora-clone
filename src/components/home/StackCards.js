@@ -148,7 +148,7 @@ export default function StackCards({ cards = [] }) {
                     {needsMore(card.description) && !expanded && '…'}
                     {needsMore(card.description) && (
                       <button type="button" onClick={() => setExpanded((v) => !v)}>
-                        {expanded ? 'less' : 'more'}
+                        {expanded ? 'See less' : 'See more'}
                       </button>
                     )}
                   </p>
