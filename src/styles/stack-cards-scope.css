@@ -110,6 +110,21 @@
     margin-bottom: 2.5rem;
   }
 
+  /* Mobile: inline “more/less” button shouldn't clip text line */
+  .stack-cards .card .card-text-container p button {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+  }
+
+  .stack-cards .card .card-text-container button {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
   .agence-cards .stack-cards {
     padding-bottom: 6rem;
   }
