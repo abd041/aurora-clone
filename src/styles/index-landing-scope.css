@@ -116,6 +116,10 @@
 }
 
 @media only screen and (max-width: 440px) {
+  .index .home-map--mobile {
+    margin-top: 2.25rem;
+  }
+
   .index .home-map--left .left-text::before {
     left: -1.25rem;
     right: -1.25rem;
